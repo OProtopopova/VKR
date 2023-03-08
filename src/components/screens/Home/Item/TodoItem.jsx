@@ -1,7 +1,8 @@
 import React from "react"
-import Edit from "./button/Edit"
-import Trash from "./button/Trash"
-import Setting from "./button/Setting"
+import { BsTrash } from "react-icons/bs"
+import { BiEditAlt } from "react-icons/bi"
+import { BsThreeDotsVertical } from "react-icons/bs"
+
 
 const TodoItem = ({ todo, changeTvShowState }) => {
 	return (
@@ -13,12 +14,32 @@ const TodoItem = ({ todo, changeTvShowState }) => {
 						: "text-lg font-semibold text-slate-700"
 				}
 			>
-				{todo.title}
+				{todo.title + todo.episode}
 			</div>
 			<div className="flex items-center justify-center">
-				<Trash />
-				<Edit />
-				<Setting /*onClick={setting}*/ />
+				<div className="border-2 rounded-l-xl w-16 h-16 flex items-center justify-center">
+					<button /*</div>onClick={()=>trashTodo() }*/>
+						<BsTrash
+							size={40}
+							className="text-slate-400 hover:text-red-600 mx-auto"
+						/>
+					</button>
+				</div>
+
+				<div className="border-2 rounded-none w-16 h-16 flex items-center justify-center">
+					<button>
+						<BiEditAlt
+							size={40}
+							className=" text-slate-400 hover:text-slate-50 mx-auto"
+						/>
+					</button>
+				</div>
+
+				<div className="border-l-xl w-12 h-16 flex items-center justify-center hover:border-slate-300 hover:bg-slate-300">
+					<button>
+						<BsThreeDotsVertical size={40} className="text-slate-400 mx-auto" />
+					</button>
+				</div>
 
 				<div
 					onClick={() => changeTvShowState("EPISODE_WATCHED", todo._id)}
@@ -30,7 +51,6 @@ const TodoItem = ({ todo, changeTvShowState }) => {
 						Просмотрено
 					</button>
 				</div>
-			
 			</div>
 		</div>
 	)
