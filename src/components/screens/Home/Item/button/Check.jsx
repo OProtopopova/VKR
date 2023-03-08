@@ -1,8 +1,9 @@
 import React from "react"
 
-const Check = (isComplited) => {
+const Check = ({ todo, changeTvShowState }) => {
 	return (
 		<div
+			onClick={() => changeTvShowState("EPISODE_WATCHED", todo._id)}
 			className={
 				"border-2 rounded-r-3xl bg-green-600 border-green-600 hover:bg-green-700 hover:border-green-700 h-16 flex items-center justify-center"
 			}
