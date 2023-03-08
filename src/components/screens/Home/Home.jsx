@@ -5,7 +5,7 @@ import AddTodo from "./Item/AddTodo"
 const data = [
 	{
 		_id: "zcv",
-		title: "поменять местами цвета на кнопках",
+		title: "сделать выплывающую менюшку",
 		isCompleted: false,
 	},
 	{
