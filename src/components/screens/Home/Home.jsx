@@ -27,34 +27,42 @@ const data = [
 ]
 
 const Home = () => {
-	const [check, setCheck] = useState(data)
+	const [store, setState] = useState(data)
 
-	/*function chngeTvShows(type, value) {}*/
+	/*function changeTvShows(type, value) {}*/
 
 	function changeTvShowState(type, id, value) {
 		if (type === "EPISODE_WATCHED") {
-			const copy = [...check]
+			const copy = [...store]
 			const tvShow = copy.find((t) => t._id === id)
 			tvShow.episode++
-			setCheck(copy)
+			setState(copy)
 		}
 		if (type === "DELETE") {
+			const copy = [...store]
+			for (var i = copy.length - 1; i >= 0; --i) {
+				if (copy[i]._id === id) {
+					copy.splice(i, 1);
+				}
+			}
+			setState(copy)
 		}
 		if (type === "EDIT") {
+			const copy = [...store]
+			const tvShow = copy.find((t) => t._id === id)
+			tvShow.title = value.title
+			setState(copy)
 		}
-
-		const trashTvShow = (id) => tvShow([...todos].filter((t) => t._id !== id))
 	}
 
 	return (
 		<div className="w-3/5 mx-auto">
 			<h1 className="text-3xl font-bold text-right mb-10">Header</h1>
-			{data.map((todo) => (
+			{store.map((todo) => (
 				<TodoItem
 					key={todo._id}
 					todo={todo}
 					changeTvShowState={changeTvShowState}
-					trashTvShow={trashTvShow}
 				/>
 			))}
 			<AddTodo />
