@@ -2,8 +2,6 @@ import React from "react"
 import { BsTrash } from "react-icons/bs"
 import { BiEditAlt } from "react-icons/bi"
 import { BsThreeDotsVertical } from "react-icons/bs"
-
-
 const TodoItem = ({ todo, changeTvShowState }) => {
 	return (
 		<div className="flex items-center justify-between mb-7 rounded-3xl bg-slate-200 pl-4 space-x-4">
@@ -16,6 +14,7 @@ const TodoItem = ({ todo, changeTvShowState }) => {
 			>
 				{todo.title + todo.episode}
 			</div>
+
 			<div className="flex items-center justify-center">
 				<div className="border-2 rounded-l-xl w-16 h-16 flex items-center justify-center">
 					<button /*</div>onClick={()=>trashTodo() }*/>

@@ -29,7 +29,7 @@ const data = [
 const Home = () => {
 	const [check, setCheck] = useState(data)
 
-	function chngeTvShows(type, value) {}
+	/*function chngeTvShows(type, value) {}*/
 
 	function changeTvShowState(type, id, value) {
 		if (type === "EPISODE_WATCHED") {
@@ -42,6 +42,8 @@ const Home = () => {
 		}
 		if (type === "EDIT") {
 		}
+
+		const trashTvShow = (id) => tvShow([...todos].filter((t) => t._id !== id))
 	}
 
 	return (
@@ -52,6 +54,7 @@ const Home = () => {
 					key={todo._id}
 					todo={todo}
 					changeTvShowState={changeTvShowState}
+					trashTvShow={trashTvShow}
 				/>
 			))}
 			<AddTodo />
