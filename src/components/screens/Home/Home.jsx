@@ -60,7 +60,9 @@ const Home = () => {
 				<Route
 					path="/"
 					exact="true"
-					element={<HomePage seriesList={seriesList} />}
+					element={<HomePage
+						userLogin={userLogin}
+						seriesList={seriesList} />}
 				/>
 				<Route
 					path="/signIn"

@@ -9,13 +9,11 @@ const HomePage = (props) => {
 			<h2 className="text-2xl font-bold text-center mb-10">
 				Добро пожаловать!
 			</h2>
-			{props.seriesList.map((todo) => (
-				<TodoItem
-					key={todo.id}
-					todo={todo}
-				/>
-			))}
-			<AddTodo />
+
+			<AddTodo
+				seriesList={props.seriesList}
+				userLogin={props.userLogin}
+			/>
 		</div>
 	)
 }

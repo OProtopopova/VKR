@@ -1,40 +1,42 @@
 import React, { useState } from "react"
 import { BsTrash } from "react-icons/bs"
 import { BiEditAlt } from "react-icons/bi"
+import axios from "axios";
+
+const deleteSerialUrl = "http://localhost:8080/series/delete";
 
 const TodoItem = (props) => {
 	const [itemState, setState] = useState({ editOpened: false, newTitle: "" })
 
-	function toggleEdit() {
-		setState((prev) => {
-			return { ...prev, editOpened: !prev.editOpened }
-		})
-	}
+	console.log(props.key);
 
-	function handleChangeEditTitleInput(event) {
-		setState((prev) => {
-			return { ...prev, newTitle: event.target.value }
-		})
-	}
 
-	function editSave() {
-		var copy = props.todo
-		copy = { ...copy, title: itemState.newTitle }
-		props.changeTvShowState("EDIT", props.todo.id, copy)
-		toggleEdit()
-	}
 
-	console.log(props.todo)
+	const deleteSerial = () => {
+		try {
+			axios({
+				url: deleteSerialUrl,
+				headers: {
+					"Content-Type": "Application/json",
+				},
+				method: "POST",
+				data: {
+					serialId: props.key
+				}
+			}).then((response) => {
+				console.log(response.data);
+			})
+		} catch (e) {
+			console.log(e)
+		}
+	}
 
 	return (
 		<div>
 			
 			<div style={{ display: itemState.editOpened ? "block" : "none" }}>
-				<input
-					value={itemState.newTitle}
-					onChange={(event) => handleChangeEditTitleInput(event)}
-				></input>
-				<button onClick={() => editSave()}>Save</button>
+
+				<button >Save</button>
 			</div>
 			<div className="flex items-center justify-between mb-7 rounded-3xl bg-slate-200 pl-4 space-x-4">
 				<div class="grid-cols-1 col-span-2">
@@ -55,9 +57,7 @@ const TodoItem = (props) => {
 				</div>
 				<div className="flex items-center justify-center">
 					<div className="border-2 rounded-l-xl w-16 h-16 flex items-center justify-center">
-						<button
-							onClick={() => props.changeTvShowState("DELETE", props.todo._id)}
-						>
+						<button onClick={() => deleteSerial()} >
 							<BsTrash
 								size={40}
 								className="text-slate-400 hover:text-red-600 mx-auto"
@@ -66,7 +66,7 @@ const TodoItem = (props) => {
 					</div>
 
 					<div className="border-2 rounded-none w-16 h-16 flex items-center justify-center">
-						<button onClick={() => toggleEdit()}>
+						<button >
 							<BiEditAlt
 								size={40}
 								className=" text-slate-400 hover:text-slate-50 mx-auto"
